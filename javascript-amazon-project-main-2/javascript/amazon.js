@@ -60,7 +60,7 @@ document.querySelector(".add-to-cart-button").addEventListener('click',()=>{
     if(document.querySelector(".cart-quantity").innerHTML == 0){
       document.querySelector(".cart-quantity").innerHTML = 1;
     }else{
-      parseInt(document.querySelector(".cart-quantity").innerHTML) += 1;
+      document.querySelector(".cart-quantity").innerHTML = Number(document.querySelector(".cart-quantity").innerHTML) += 1;
     }
 
   });
