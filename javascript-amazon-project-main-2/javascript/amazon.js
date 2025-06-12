@@ -1,3 +1,5 @@
+import { cart } from "../data/cart.js";
+import { products } from "../data/products.js";
 /*
     1.html-be a js-ek importálása
     2. product.js létrehozása a javascript mappán belül az első 3 termékkel
@@ -6,8 +8,10 @@
     5. az egyes termékek adatainak beírása a generálandó html kódba
     6. innerHTML használatával a generált html kód feltöltése az amazon.html-be
 */
+contCart();
 let htmlkod = '';
 products.forEach((item)=>{
+
     htmlkod += 
         `<div class="product-container">
           <div class="product-image-container">
@@ -65,9 +69,17 @@ document.querySelector('.products-grid').innerHTML = htmlkod;
 document.querySelectorAll('.js-add-to-cart').forEach((gomb) =>{
   gomb.addEventListener('click', ()=>{
     cart.push(gomb.dataset.productId);
-    console.log(cart);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    contCart();
   })
 });
 
 
-
+function contCart(){
+  let countC = 0;
+  cart.forEach((item)=>{
+    countC += 1;
+  });
+  document.querySelector('.cart-quantity').innerHTML = countC;
+}
+    
